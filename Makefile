@@ -16,8 +16,22 @@ build: ## Docker image build
 push: ## Docker image push
 	docker push ${IMAGE}:${TAG}
 
+buildx: ## Docker image build multi-platform
+	docker buildx build \
+	    --push \
+        --platform=linux/amd64,linux/arm64 \
+        --tag=${IMAGE}:${TAG} \
+        -f Dockerfile ./
+
 build-latest: ## Docker image build
 	docker build -t ${IMAGE}:latest -f Dockerfile ./
 
 push-latest: ## Docker image push
 	docker push ${IMAGE}:latest
+
+buildx-latest: ## Docker image build multi-platform
+	docker buildx build \
+	    --push \
+        --platform=linux/amd64,linux/arm64 \
+        --tag=${IMAGE}:latest \
+        -f Dockerfile ./
