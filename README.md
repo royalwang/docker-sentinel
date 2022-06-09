@@ -1,12 +1,12 @@
-# docker-sentinel
-alibaba sentinel
+# sentinel-dashboard-for-k8s
+alibaba sentinel dashboard for k8s.
 
 
 # TAGS
 
-`1.7.1`,`latest`
+`1.7.1` `latest`
 
-`1.6.1`, `1.6.3`, 
+`1.6.1` `1.6.3` `1.8.4`
 
 # 端口
 web端口 8280
