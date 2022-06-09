@@ -15,3 +15,9 @@ build: ## Docker image build
 
 push: ## Docker image push
 	docker push ${IMAGE}:${TAG}
+
+build-latest: ## Docker image build
+	docker build -t ${IMAGE}:latest -f Dockerfile ./
+
+push-latest: ## Docker image push
+	docker push ${IMAGE}:latest
