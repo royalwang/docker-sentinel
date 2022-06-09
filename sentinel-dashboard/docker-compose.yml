@@ -2,11 +2,11 @@ version: '3.5'
 
 services:
   sentinel:
-    image: foxiswho/sentinel
+    image: royalcms/sentinel-dashboard:1.8.4
     hostname: sentinel
     container_name: sentinel
     ports:
-      - "8280:8280"
+      - "8858:8858"
     environment:
       - JAVA_OPTS=-Dcsp.sentinel.log.dir=/opt/logs
     volumes:
