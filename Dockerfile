@@ -1,20 +1,19 @@
-
 FROM openjdk:11.0.3-jdk-stretch
 
-MAINTAINER foxiswho@gmail.com
+LABEL MAINTAINER hxroyal@gmail.com
 
 ARG version
 ARG port
 
 # sentinel version
-ENV SENTINEL_VERSION ${version:-1.7.2}
+ENV SENTINEL_VERSION ${version:-1.8.4}
 #PORT
-ENV PORT ${port:-8280}
+ENV PORT ${port:-8858}
 ENV JAVA_OPT=""
 #
 ENV PROJECT_NAME sentinel-dashboard
 ENV SERVER_HOST localhost
-ENV SERVER_PORT 8280
+ENV SERVER_PORT 8858
 ENV USERNAME sentinel
 ENV PASSWORD sentinel
 
