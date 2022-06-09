@@ -35,3 +35,7 @@ buildx-latest: ## Docker image build multi-platform
         --platform=linux/amd64,linux/arm64 \
         --tag=${IMAGE}:latest \
         -f Dockerfile ./
+
+repo: ## Docker image build multi-platform
+	helm package -d ./charts charts/sentinel-dashboard
+	helm repo index --url https://royalwang.github.io/sentinel-dashboard-for-k8s/charts/ ./charts
