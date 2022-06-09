@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "sentinel-dashboard.fullname" . }}
+  labels:
+    {{- include "sentinel-dashboard.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "sentinel-dashboard.fullname" . }}
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "sentinel-dashboard.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "sentinel-dashboard.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "sentinel-dashboard.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8858
+              protocol: TCP
+            - name: api
+              containerPort: 8719
+              protocol: TCP
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+            - name: JAVA_OPT_EXT
+              value: "-Dserver.servlet.session.timeout=7200 "
+            - name: SERVER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "sentinel-dashboard.fullname" . }}
+                  key: sentinel.server.host
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "sentinel-dashboard.fullname" . }}
+                  key: sentinel.server.port
+            - name: USERNAME
+              valueFrom:
+                  configMapKeyRef:
+                    name: {{ include "sentinel-dashboard.fullname" . }}
+                    key: sentinel.dashboard.auth.username
+            - name: PASSWORD
+              valueFrom:
+                  configMapKeyRef:
+                    name: {{ include "sentinel-dashboard.fullname" . }}
+                    key: sentinel.dashboard.auth.password
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

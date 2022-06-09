@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "sentinel-dashboard.fullname" . }}
+data:
+  sentinel.server.host: {{ .Values.sentinel.server.host | default "sentinel" }}
+  sentinel.server.port: {{ .Values.sentinel.server.port | default "8858" | quote }}
+  sentinel.dashboard.auth.username: {{ .Values.sentinel.dashboard.auth.username | default "sentinel" }}
+  sentinel.dashboard.auth.password: {{ .Values.sentinel.dashboard.auth.password | default "sentinel" }}
