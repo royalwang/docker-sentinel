@@ -20,7 +20,16 @@ sentinel/sentinel
 
 容器内日志目录：/opt/logs
 
-# run
+# Helm deploy
+```shell
+helm repo add sentinel-dashboard https://royalwang.github.io/sentinel-dashboard-for-k8s/charts/
+
+helm install msentinel-dashboard sentinel-dashboard/sentinel-dashboard
+
+```
+
+
+# Docker run
 
 ```shell
 docker run --name sentinel -p 8858:8858 -v ./logs:/opt/logs royalwang/sentinel-dashboard:latest
@@ -71,9 +80,3 @@ docker run --rm --name sentinel -p 8858:8858 royalwang/sentinel-dashboard:1.6.1
 或
 docker run --rm -e JAVA_OPT_EXT="-Dserver.port=8858 -Dcsp.sentinel.dashboard.server=localhost:8858 -Dproject.name=sentinel-dashboard -Djava.security.egd=file:/dev/./urandom" --name sentinel -p 8858:8858 royalwang/sentinel-dashboard:1.6.1
 ````
-
-
-
-# 其他k8s 使用案例
-
-https://github.com/foxiswho/k8s-nacos-sentinel-rocketmq-zipkin-elasticsearch-redis-mysql
