@@ -11,7 +11,7 @@ help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  \033[32m%-14s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 build: ## Docker image build
-	docker build -t ${IMAGE}:${TAG} -f Dockerfile ../
+	docker build -t ${IMAGE}:${TAG} -f Dockerfile ./
 
 push: ## Docker image push
 	docker push ${IMAGE}:${TAG}
