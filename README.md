@@ -9,7 +9,7 @@ alibaba sentinel dashboard for k8s.
 `1.6.1` `1.6.3` `1.8.4`
 
 # 端口
-web端口 8280
+web端口 8858
 
 api server : 8719
 
@@ -23,24 +23,24 @@ sentinel/sentinel
 # run
 
 ```shell
-docker run --name sentinel -p 8280:8280 -v ./logs:/opt/logs foxiswho/sentinel
+docker run --name sentinel -p 8858:8858 -v ./logs:/opt/logs royalwang/sentinel-dashboard:latest
 ```
 
 或
 
 ```shell
-docker run -e JAVA_OPT_EXT='-Xmx1g' -e USERNAME="sentinel" -e PASSWORD="sentinel" -e SERVER_HOST="localhost" --name sentinel -p 8280:8280 foxiswho/sentinel
+docker run -e JAVA_OPT_EXT='-Xmx1g' -e USERNAME="sentinel" -e PASSWORD="sentinel" -e SERVER_HOST="localhost" --name sentinel -p 8858:8858 royalwang/sentinel-dashboard:latest
 ```
 或
 
 ```shell
-docker run --rm --name sentinel -p 8280:8280 foxiswho/sentinel
+docker run --rm --name sentinel -p 8858:8858 royalwang/sentinel-dashboard:latest
 ```
 
 或
 
 ```shell
-docker run --rm -e JAVA_OPT_EXT='-Xmx1g' --name sentinel -p 8280:8280 foxiswho/sentinel
+docker run --rm -e JAVA_OPT_EXT='-Xmx1g' --name sentinel -p 8858:8858 royalwang/sentinel-dashboard:latest
 ```
 
 # 官网
@@ -61,15 +61,15 @@ https://github.com/alibaba/Sentinel
 编译镜像
 
 ```shell
-docker build -t foxiswho/sentinel:1.6.1 --build-arg version=1.6.1 ./
+docker build -t royalwang/sentinel-dashboard:1.6.1 --build-arg version=1.6.1 ./
 ```
 
 启动容器
 ````SHELLL
-docker run --rm --name sentinel -p 8280:8280 foxiswho/sentinel:1.6.1
+docker run --rm --name sentinel -p 8858:8858 royalwang/sentinel-dashboard:1.6.1
 
 或
-docker run --rm -e JAVA_OPT_EXT="-Dserver.port=8280 -Dcsp.sentinel.dashboard.server=localhost:8280 -Dproject.name=sentinel-dashboard -Djava.security.egd=file:/dev/./urandom" --name sentinel -p 8280:8280 foxiswho/sentinel:1.6.1
+docker run --rm -e JAVA_OPT_EXT="-Dserver.port=8858 -Dcsp.sentinel.dashboard.server=localhost:8858 -Dproject.name=sentinel-dashboard -Djava.security.egd=file:/dev/./urandom" --name sentinel -p 8858:8858 royalwang/sentinel-dashboard:1.6.1
 ````
 
 
