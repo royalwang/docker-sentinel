@@ -3,6 +3,7 @@ alibaba sentinel dashboard for k8s.
 
 # 端口
 Web Port: 8858
+
 Api Server Port: 8719
 
 # 默认用户名和密码
