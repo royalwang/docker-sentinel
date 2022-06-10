@@ -1,6 +1,6 @@
 apiVersion: v2
 name: sentinel-dashboard
-description: A Helm chart for Kubernetes
+description: Alibaba Cloud Sentinel Helm chart for Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
 #
