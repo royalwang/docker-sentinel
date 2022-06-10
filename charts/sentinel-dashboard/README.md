@@ -11,7 +11,7 @@ sentinel/sentinel
 
 # Helm deploy
 ```shell
-helm repo add sentinel-dashboard https://royalwang.github.io/sentinel-dashboard-for-k8s/charts/
+helm repo add sentinel-dashboard https://royalwang.github.io/sentinel-dashboard-for-k8s/
 
 helm install msentinel-dashboard sentinel-dashboard/sentinel-dashboard
 
