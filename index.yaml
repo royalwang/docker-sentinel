@@ -3,12 +3,12 @@ entries:
   sentinel-dashboard:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-09T17:51:07.262292+08:00"
-    description: A Helm chart for Kubernetes
-    digest: 5a4dab6361091d01207da8a01ff8fc954c971bcad6b3a90080419dfbd3d33b08
+    created: "2022-06-10T09:48:13.442053+08:00"
+    description: Alibaba Cloud Sentinel Helm chart for Kubernetes
+    digest: 3cb58267ff1238a30e33273efe46b3e07d497434856fee76300bd367cdee4d4d
     name: sentinel-dashboard
     type: application
     urls:
     - https://royalwang.github.io/sentinel-dashboard-for-k8s/charts/sentinel-dashboard-0.1.0.tgz
     version: 0.1.0
-generated: "2022-06-09T17:51:07.261918+08:00"
+generated: "2022-06-10T09:48:13.440918+08:00"
